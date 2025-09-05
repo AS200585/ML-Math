@@ -25,4 +25,40 @@ Key points:
 - The function can be used with arrays of different data types, as long as they are compatible for the operation.
 - The function can be used with arrays of different sizes, different ranks, different strides, and different alignments, 
   as long as they are compatible for the operation.
+
+Example:
+Consider two matrices A and B:
+A = [[1, 2, 3],
+     [4, 5, 6]]
+B = [[7, 8],
+     [9, 10],
+     [11, 12]]
+     
+The product of A and B is:
+C = [[58, 64],
+     [139, 154]]
+
+A - m X n, B - n X p
+Therefore, C - m X p
 """
+
+import numpy as np
+
+M1 = np.random.randn(3, 9)
+M2 = np.random.randn(4, 9)
+
+M2_T = np.transpose(M2)  # Transpose M2 to make it (9, 4) for multiplication
+
+print("Matrix 1 : \n", M1)
+print("Matrix 2 : \n", M2)
+print("Transposed Matrix 1 : \n", M1.T)
+print("Transposed Matrix 2 : \n", M2_T)
+
+M3 = np.matmul(M1, M2_T)  # Matrix multiplication (3x9) . (9x4) = (3x4)
+print("Matrix Multiplication(Matrix 3) : \n", M3)
+print("@ Function : \n", M1 @ M2_T)  # Using @ operator for matrix multiplication
+
+print("Difference : \n", M3 - (M1 @ M2_T))
+print("Sum : \n", M3 + (M1 @ M2_T))
+print("Multiplication : \n", M3 * (M1 @ M2_T))
+print("Equal Matrix? ", np.array_equal(M3, (M1 @ M2_T)))  
